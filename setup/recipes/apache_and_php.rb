@@ -27,6 +27,7 @@ end
   'proxy_balancer'
   'proxy_connect'
   'proxy_html'
+  'xml2enc'
 ).each do |apache_module|
   execute apache_module do
     command "a2enmod #{apache_module}"
@@ -35,6 +36,13 @@ end
 
 template '/etc/apache2/sites-enabled/000-default.conf' do
   source '000-default.conf.erb'
+  owner 'root'
+  group 'root'
+  mode '0755'
+end
+
+template '/etc/apache2/apache2.conf' do
+  source 'apache2.conf.erb'
   owner 'root'
   group 'root'
   mode '0755'
