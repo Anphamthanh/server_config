@@ -15,6 +15,14 @@ directory node['apresume.com']['working-dir'] do
   action :create
 end
 
+# Allow apache2 to write recaptcha image to folder delete
+directory "#{node['apresume.com']['working-dir']}delete" do
+  owner 'www-data'
+  group 'www-data'
+  mode '0755'
+  action :create
+end
+
 template "#{node['apresume.com']['git-dir']}hooks/post-receive" do
   source 'post-receive-hook.erb'
   owner 'git'
