@@ -12,7 +12,7 @@
   'libapache2-mod-php5'
   'libapache2-mod-proxy-html'
   'libxml2-dev'
-).each do |pkg_to_install| 
+).each do |pkg_to_install|
   package pkg_to_install
 end
 
@@ -31,4 +31,11 @@ end
   execute apache_module do
     command "a2enmod #{apache_module}"
   end
+end
+
+template '/etc/apache2/sites-enabled/000-default.conf' do
+  source '000-default.conf.erb'
+  owner 'root'
+  group 'root'
+  mode '0755'
 end
