@@ -47,3 +47,7 @@ template '/etc/apache2/apache2.conf' do
   group 'root'
   mode '0755'
 end
+
+service 'apache2' do
+  action :restart
+end
