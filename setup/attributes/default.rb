@@ -2,3 +2,5 @@ default['git-server']['public-key'] = 'ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCyl
 default['git-server']['working-dir'] = '/etc/git-server/'
 default['apresume.com']['working-dir'] = "/var/www/apresume.com/"
 default['apresume.com']['git-dir'] = "#{node['git-server']['working-dir']}apresume.com.git/"
+default['giaydepthanhlong.com']['working-dir'] = "/var/www/giaydepthanhlong.com/"
+default['giaydepthanhlong.com']['git-dir'] = "#{node['git-server']['working-dir']}giaydepthanhlong.com.git/"
