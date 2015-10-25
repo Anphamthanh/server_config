@@ -18,3 +18,10 @@ end
 file '/var/www/kanboard.zip' do
   action :delete
 end
+
+directory '/var/www/kanboard/data/' do
+  owner 'www-data'
+  group 'www-data'
+  mode '0755'
+  action :create
+end
