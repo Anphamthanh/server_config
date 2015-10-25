@@ -20,11 +20,13 @@ end
 execute 'create authorized_keys file' do
   command "echo '#{node['git-server']['public-key']}' > /home/git/.ssh/authorized_keys"
   user 'git'
+  sensitive true
   not_if { ::File.exist? '/home/git/.ssh/authorized_keys' }
 end
 
 execute 'add my public key' do
-  command "echo '#{node['git-server']['public-key']}' >> /home/git/.ssh/authorized_keys"
+  command "echo '#{node['git-server']['public-key']}' > /home/git/.ssh/authorized_keys"
   user 'git'
-  not_if { `grep #{node['git-server']['public-key']} home/git/.ssh/authorized_keys | wc -l`.to_i > 0 }
+  sensitive true
+  not_if { `grep '#{node['git-server']['public-key']}' home/git/.ssh/authorized_keys | wc -l`.to_i > 0 }
 end

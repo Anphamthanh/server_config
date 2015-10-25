@@ -5,6 +5,7 @@ execute 'setup bare git repo' do
   command 'git init --bare giaydepthanhlong.com.git'
   cwd node['git-server']['working-dir']
   user 'git'
+  not_if { ::File.exist? "#{node['git-server']['working-dir']}giaydepthanhlong.com.git" }
 end
 
 directory node['giaydepthanhlong.com']['working-dir'] do
