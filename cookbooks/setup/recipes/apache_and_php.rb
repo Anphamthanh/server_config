@@ -34,13 +34,6 @@ end
   end
 end
 
-template '/etc/apache2/apache2.conf' do
-  source 'apache2.conf.erb'
-  owner 'root'
-  group 'root'
-  mode '0755'
-end
-
 service 'apache2' do
   action :restart
 end

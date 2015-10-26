@@ -34,3 +34,22 @@ template "#{node['apresume.com']['git-dir']}hooks/post-receive" do
     git_dir: node['apresume.com']['git-dir']
   })
 end
+
+template "/etc/apache2/sites-available/#{node['apresume.com']['apache-conf']}" do
+  source 'virtual-host.conf.erb'
+  mode '0755'
+  variables({
+    admin_email: node['production-server']['admin-email'],
+    server_name: node['apresume.com']['server-name'],  
+    server_root: node['apresume.com']['working-dir']
+  })
+  not_if { ::File.exist? "/etc/apache2/sites-available/#{node['apresume.com']['apache-conf']}" }
+end
+
+execute 'enable apresume conf' do
+  command "a2ensite #{node['apresume.com']['apache-conf']}"
+end
+
+service 'apache2' do
+  action :restart
+end
