@@ -7,6 +7,3 @@
 # All rights reserved - Do Not Redistribute
 #
 
-include_recipe 'setup::kanboard'
-include_recipe 'setup::apresume.com'
-include_recipe 'setup::giaydepthanhlong.com'
