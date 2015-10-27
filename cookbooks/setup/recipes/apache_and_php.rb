@@ -34,6 +34,10 @@ end
   end
 end
 
+template '/var/www/html/index.html' do
+  source 'false_landing.html'
+end
+
 service 'apache2' do
   action :restart
 end
