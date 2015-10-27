@@ -21,7 +21,7 @@ runcmd:
   - cd
   
   # Retrieve setup cookbook
-  - git clone https://github.com/Anphamthanh/cookbooks
+  - git clone https://github.com/Anphamthanh/server_config
   - cd cookbooks
   - chef-client -z -o setup::php_production_server
   - chef-client -z -o hardening
