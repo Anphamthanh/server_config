@@ -7,6 +7,10 @@ package 'iptables-persistent' do
   action :install
 end
 
+service 'iptables-persistent' do
+  action [:start, :enable]
+end
+
 execute 'set default to accept all, and flush' do
   command 'iptables --policy INPUT ACCEPT; iptables --policy OUTPUT ACCEPT; iptables --flush'
 end
@@ -31,6 +35,6 @@ execute 'drop all other traffic' do
   command 'iptables --append INPUT --jump DROP'
 end
 
-service 'iptables-persistent' do
-  action [:start, :enable]
+execute 'save all rules' do
+  command '/sbin/iptables-save > /etc/iptables/rules.v4'
 end
