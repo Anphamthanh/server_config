@@ -22,7 +22,8 @@ end
   'libffi-dev'
   'libmysqlclient-dev'
   'mysql-server'
-  'mysql-client' 
+  'mysql-client'
+  'nginx'
 ).each do |pkg_to_install|
   package pkg_to_install
 end
