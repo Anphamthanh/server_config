@@ -20,40 +20,60 @@ end
   'libcurl4-openssl-dev'
   'python-software-properties'
   'libffi-dev'
+  'libmysqlclient-dev'
+  'mysql-server'
+  'mysql-client' 
 ).each do |pkg_to_install|
   package pkg_to_install
 end
 
-script 'install' do
+git '/root/.rbenv' do
+  repository 'git://github.com/sstephenson/rbenv.git'
+  reference 'master'
+  action :sync
+end
+
+git '/root/.rbenv/plugins/ruby-build' do
+  repository 'git://github.com/sstephenson/ruby-build.git'
+  reference 'master'
+  action :sync
+end
+
+git '/root/.rbenv/plugins/rbenv-vars' do
+  repository 'git://github.com/sstephenson/rbenv-vars.git'
+  reference 'master'
+  action :sync
+end
+
+execute 'install ruby 2.2.1' do
+  command 'rbenv install -v 2.2.1; rbenv global 2.2.1'
+end
+
+script 'update bash_profile' do
   interpreter 'bash'
   code <<-EOH
     cd
-    git clone git://github.com/sstephenson/rbenv.git .rbenv
     echo 'export PATH="$HOME/.rbenv/bin:$PATH"' >> ~/.bash_profile
     echo 'eval "$(rbenv init -)"' >> ~/.bash_profile
-
-    git clone git://github.com/sstephenson/ruby-build.git ~/.rbenv/plugins/ruby-build
     echo 'export PATH="$HOME/.rbenv/plugins/ruby-build/bin:$PATH"' >> ~/.bash_profile
     source ~/.bash_profile
-
-    rbenv install -v 2.2.1
-    rbenv global 2.2.1
-
-    # disable gem docs
-    echo "gem: --no-document" > ~/.gemrc
-
-    gem install bundler
-    gem install rails
-
-    rbenv rehash
-
-    # javascript runtime
-    sudo add-apt-repository ppa:chris-lea/node.js
-    sudo apt-get update
-    sudo apt-get install nodejs
-
-    # mySQL database
-    sudo apt-get install mysql-server mysql-client libmysqlclient-dev
-    gem install mysql2
   EOH
+  user 'root'
 end
+
+execute 'disable gem docs' do
+  command 'echo "gem: --no-document" > /root/.gemrc'
+end
+
+execute 'rehash rbenv shims' do
+  command 'rbenv rehash'
+end
+
+execute 'install javascript runtime' do
+  command 'add-apt-repository ppa:chris-lea/node.js; apt-get update; apt-get install -y nodejs'
+end
+
+execute 'install rails and mysql' do
+  command 'gem install bundler rails mysql2'
+end
+
