@@ -1,8 +1,8 @@
 
 include_recipe 'setup::apache_and_php'
 
-cookbook_file '/var/www/kanboard.zip' do
-  source 'kanboard-latest.zip'
+remote_file '/var/www/kanboard.zip' do
+  source 'https://www.dropbox.com/s/5obrj6trdthdku3/kanboard-latest.zip?dl=0'
   owner 'root'
   group 'root'
   mode '0755'
