@@ -20,10 +20,6 @@ end
   'libcurl4-openssl-dev'
   'python-software-properties'
   'libffi-dev'
-  'libmysqlclient-dev'
-  'mysql-server'
-  'mysql-client'
-  'nginx'
 ).each do |pkg_to_install|
   package pkg_to_install
 end
@@ -74,7 +70,8 @@ execute 'install javascript runtime' do
   command 'add-apt-repository ppa:chris-lea/node.js; apt-get update; apt-get install -y nodejs'
 end
 
-execute 'install rails and mysql' do
-  command 'gem install bundler rails mysql2'
+execute 'install rails' do
+  command 'gem install bundler rails'
 end
+
 
