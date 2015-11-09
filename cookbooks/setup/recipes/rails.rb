@@ -30,6 +30,8 @@ git '/root/.rbenv' do
   action :sync
 end
 
+directory '/root/.rbenv/plugins'
+
 git '/root/.rbenv/plugins/ruby-build' do
   repository 'git://github.com/sstephenson/ruby-build.git'
   reference 'master'
