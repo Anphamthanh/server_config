@@ -48,15 +48,15 @@ script 'update bash_profile' do
   interpreter 'bash'
   code <<-EOH
     cd
-    echo 'export PATH="$HOME/.rbenv/bin:$PATH"' >> ~/.bash_profile
-    echo 'eval "$(rbenv init -)"' >> ~/.bash_profile
-    echo 'export PATH="$HOME/.rbenv/plugins/ruby-build/bin:$PATH"' >> ~/.bash_profile
+    echo 'export PATH="$HOME/.rbenv/bin:$PATH"' >> $HOME/.bash_profile
+    echo 'eval "$(rbenv init -)"' >> $HOME/.bash_profile
+    echo 'export PATH="$HOME/.rbenv/plugins/ruby-build/bin:$PATH"' >> $HOME/.bash_profile
   EOH
   user 'root'
 end
 
 execute 'install ruby 2.2.1' do
-  command '/root/.rbenv/bin/rbenv install -v 2.2.1'
+  command 'RUBY_CONFIGURE_OPTS=--disable-install-doc /root/.rbenv/bin/rbenv install -v 2.2.1'
 end
 
 execute 'set ruby 2.2.1 as default' do
