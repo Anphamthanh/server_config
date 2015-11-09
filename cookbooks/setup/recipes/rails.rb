@@ -44,10 +44,6 @@ git '/root/.rbenv/plugins/rbenv-vars' do
   action :sync
 end
 
-execute 'install ruby 2.2.1' do
-  command 'rbenv install -v 2.2.1; rbenv global 2.2.1'
-end
-
 script 'update bash_profile' do
   interpreter 'bash'
   code <<-EOH
@@ -58,6 +54,10 @@ script 'update bash_profile' do
     source ~/.bash_profile
   EOH
   user 'root'
+end
+
+execute 'install ruby 2.2.1' do
+  command 'rbenv install -v 2.2.1; rbenv global 2.2.1'
 end
 
 execute 'disable gem docs' do
