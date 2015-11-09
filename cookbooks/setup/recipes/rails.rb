@@ -55,12 +55,12 @@ script 'update bash_profile' do
   user 'root'
 end
 
-execute 'source bash_profile' do
-  command 'source /root/.bash_profile'
+execute 'install ruby 2.2.1' do
+  command '/root/.rbenv/bin/rbenv install -v 2.2.1'
 end
 
-execute 'install ruby 2.2.1' do
-  command 'rbenv install -v 2.2.1; rbenv global 2.2.1'
+execute 'set ruby 2.2.1 as default' do
+  command '/root/.rbenv/bin/rbenv global 2.2.1'
 end
 
 execute 'disable gem docs' do
@@ -68,7 +68,7 @@ execute 'disable gem docs' do
 end
 
 execute 'rehash rbenv shims' do
-  command 'rbenv rehash'
+  command '/root/.rbenv/bin/rbenv rehash'
 end
 
 execute 'install javascript runtime' do
