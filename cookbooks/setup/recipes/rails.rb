@@ -56,7 +56,7 @@ script 'update bash_profile' do
 end
 
 execute 'source bash_profile' do
-  command 'source ~/.bash_profile'
+  command 'source /root/.bash_profile'
 end
 
 execute 'install ruby 2.2.1' do
