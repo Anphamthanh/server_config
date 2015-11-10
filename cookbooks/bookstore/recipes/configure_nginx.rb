@@ -17,10 +17,12 @@ template '/etc/nginx/sites-available/bookstore' do
     ip: node['ipaddress'],
     root_dir: "#{node['git-server']['server-dir']}public"
   })
+  not_if { ::File.exist? '/etc/nginx/sites-available/bookstore' }
 end
 
 execute 'update sites-enable' do
   command 'ln -s /etc/nginx/sites-available/bookstore /etc/nginx/sites-enabled/bookstore'
+  not_if { ::File.exist? '/etc/nginx/sites-enabled/bookstore' }
 end
 
 execute 'reload nginx' do
