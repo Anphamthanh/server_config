@@ -19,6 +19,7 @@ script 'add passenger' do
     chmod 600 /etc/apt/sources.list.d/passenger.list
   EOH
   user 'root'
+  not_if { `cat /etc/apt/sources.list.d/passenger.list | grep passenger | wc -l`.to_i > 0 }
 end
 
 execute "apt-get-update" do
