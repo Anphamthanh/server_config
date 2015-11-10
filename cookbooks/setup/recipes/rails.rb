@@ -63,7 +63,7 @@ execute 'set ruby 2.2.1 as default' do
 end
 
 execute 'disable gem docs' do
-  command 'echo "gem: --no-document" > /root/.gemrc'
+  command 'echo "gem: --no-rdoc --no-ri" > /root/.gemrc'
 end
 
 execute 'rehash rbenv shims' do
