@@ -18,3 +18,11 @@ template '/etc/nginx/sites-available/bookstore' do
     root_dir: "#{node['git-server']['server-dir']}public"
   })
 end
+
+execute 'update sites-enable' do
+  command 'ln -s /etc/nginx/sites-available/bookstore /etc/nginx/sites-enabled/bookstore'
+end
+
+execute 'reload nginx' do
+  command 'nginx -s reload'
+end
