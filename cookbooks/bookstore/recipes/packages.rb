@@ -2,8 +2,6 @@
   'libmysqlclient-dev'
   'mysql-server'
   'mysql-client'
-  'nginx'
-  'nginx-extras'
 ).each do |pkg_to_install|
   package pkg_to_install
 end
@@ -28,5 +26,11 @@ execute "apt-get-update" do
   ignore_failure true
 end
 
-package 'passenger'
+%w(
+  'nginx'
+  'nginx-extras'
+  'passenger'
+).each do |pkg_to_install|
+  package pkg_to_install
+end
 
