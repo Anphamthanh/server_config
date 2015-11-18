@@ -23,21 +23,21 @@ end
   package pkg_to_install
 end
 
-git '/root/.rbenv' do
+git node['rails']['rbenv'] do
   repository 'git://github.com/sstephenson/rbenv.git'
   reference 'master'
   action :sync
 end
 
-directory '/root/.rbenv/plugins'
+directory "#{node['rails']['rbenv']}plugins"
 
-git '/root/.rbenv/plugins/ruby-build' do
+git "#{node['rails']['rbenv']}plugins/ruby-build" do
   repository 'git://github.com/sstephenson/ruby-build.git'
   reference 'master'
   action :sync
 end
 
-git '/root/.rbenv/plugins/rbenv-vars' do
+git "#{node['rails']['rbenv']}plugins/rbenv-vars" do
   repository 'git://github.com/sstephenson/rbenv-vars.git'
   reference 'master'
   action :sync
@@ -47,27 +47,27 @@ script 'update bash_profile' do
   interpreter 'bash'
   code <<-EOH
     cd
-    echo 'export PATH="$HOME/.rbenv/bin:$PATH"' >> $HOME/.bash_profile
+    echo 'export PATH="#{node['rails']['rbenv']}bin:$PATH"' >> $HOME/.bash_profile
     echo 'eval "$(rbenv init -)"' >> $HOME/.bash_profile
-    echo 'export PATH="$HOME/.rbenv/plugins/ruby-build/bin:$PATH"' >> $HOME/.bash_profile
+    echo 'export PATH="#{node['rails']['rbenv']}plugins/ruby-build/bin:$PATH"' >> $HOME/.bash_profile
   EOH
   user 'root'
 end
 
 execute 'install ruby 2.2.1' do
-  command 'RUBY_CONFIGURE_OPTS=--disable-install-doc /root/.rbenv/bin/rbenv install -v 2.2.1'
+  command "RUBY_CONFIGURE_OPTS=--disable-install-doc #{node['rails']['rbenv']}bin/rbenv install -v 2.2.1"
 end
 
 execute 'set ruby 2.2.1 as default' do
-  command '/root/.rbenv/bin/rbenv global 2.2.1'
+  command "#{node['rails']['rbenv']}bin/rbenv global 2.2.1"
 end
 
-execute 'disable gem docs' do
-  command 'echo "gem: --no-rdoc --no-ri" > /root/.gemrc'
-end
+# execute 'disable gem docs' do
+#   command 'echo "gem: --no-rdoc --no-ri" > /root/.gemrc'
+# end
 
 execute 'rehash rbenv shims' do
-  command '/root/.rbenv/bin/rbenv rehash'
+  command "#{node['rails']['rbenv']}/bin/rbenv rehash"
 end
 
 execute 'install javascript runtime' do
@@ -75,7 +75,7 @@ execute 'install javascript runtime' do
 end
 
 execute 'install rails' do
-  command 'gem install bundler rails'
+  command 'gem install bundler rails --no-rdoc --no-ri'
 end
 
 

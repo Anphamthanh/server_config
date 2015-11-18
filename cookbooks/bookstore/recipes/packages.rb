@@ -22,8 +22,8 @@ script 'add passenger' do
   not_if { `cat /etc/apt/sources.list.d/passenger.list | grep passenger | wc -l`.to_i > 0 }
 end
 
-execute "apt-get-update" do
-  command "apt-get update"
+execute 'apt-get-update' do
+  command 'apt-get update'
   ignore_failure true
 end
 
@@ -35,3 +35,6 @@ end
   package pkg_to_install
 end
 
+execute 'start nginx' do
+  command 'nginx'
+end

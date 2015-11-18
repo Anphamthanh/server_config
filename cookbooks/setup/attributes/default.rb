@@ -12,3 +12,5 @@ default['giaydepthanhlong.com']['working-dir'] = '/var/www/giaydepthanhlong.com/
 default['giaydepthanhlong.com']['git-dir'] = "#{node['git-server']['working-dir']}giaydepthanhlong.com.git/"
 default['giaydepthanhlong.com']['apache-conf'] = 'giaydepthanhlong.com.conf'
 default['giaydepthanhlong.com']['server-name'] = 'giaydepthanhlong.com'
+
+default['rails']['rbenv'] = '/usr/local/.rbenv/'
