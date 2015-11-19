@@ -62,7 +62,7 @@ execute 'install javascript runtime' do
 end
 
 execute 'install rails' do
-  command 'gem install bundler rails --no-rdoc --no-ri'
+  command 'gem install bundler rails -v 4.2.5 --no-rdoc --no-ri'
 end
 
 
