@@ -25,12 +25,12 @@ end
 
 execute 'get ruby 2.2.3 source' do
   command 'wget https://cache.ruby-lang.org/pub/ruby/2.2/ruby-2.2.3.tar.gz'
-  not_if { `ruby -v`.includes? '2.2.3' }
+  not_if { `ruby -v`.include? '2.2.3' }
 end
 
 execute 'extract ruby source' do
   command 'tar xzvf ruby-2.2.3.tar.gz'
-  not_if { `ruby -v`.includes? '2.2.3' }
+  not_if { `ruby -v`.include? '2.2.3' }
 end
 
 script 'install ruby' do
@@ -41,7 +41,7 @@ script 'install ruby' do
     make
     make install
   EOH
-  not_if { `ruby -v`.includes? '2.2.3' }
+  not_if { `ruby -v`.include? '2.2.3' }
 end
 
 
