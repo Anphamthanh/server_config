@@ -36,20 +36,20 @@ execute 'extract ruby source' do
 end
 
 execute 'configure ruby source' do
-  command './configure'
+  command './configure --prefix=/usr/local --disable-install-doc'
   cwd '/tmp/ruby-2.2.3'
   not_if { `ruby -v`.include? '2.2.3' }
 end
 
 execute 'make ruby source' do
-  cwd '/tmp/ruby-2.2.3'
   command 'make'
+  cwd '/tmp/ruby-2.2.3'
   not_if { `ruby -v`.include? '2.2.3' }
 end
 
 execute 'install ruby' do
-  cwd '/tmp/ruby-2.2.3'
   command 'make install'
+  cwd '/tmp/ruby-2.2.3'
   not_if { `ruby -v`.include? '2.2.3' }
 end
 
