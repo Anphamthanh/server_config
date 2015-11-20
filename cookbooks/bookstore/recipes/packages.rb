@@ -29,9 +29,16 @@ execute 'apt-get-update' do
 end
 
 %w(
-  'nginx'
   'nginx-extras'
   'passenger'
 ).each do |pkg_to_install|
   package pkg_to_install
+end
+
+execute 'remove bad ruby' do
+  command 'sudo rm /usr/bin/ruby'
+end
+
+execute 'add symbolic link for correct ruby' do
+  command 'sudo ln -s /usr/local/bin/ruby /usr/bin/ruby'
 end
