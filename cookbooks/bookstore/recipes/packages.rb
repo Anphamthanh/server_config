@@ -2,6 +2,7 @@
   'libmysqlclient-dev'
   'mysql-server'
   'mysql-client'
+  'screen'
 ).each do |pkg_to_install|
   package pkg_to_install
 end
@@ -33,8 +34,4 @@ end
   'passenger'
 ).each do |pkg_to_install|
   package pkg_to_install
-end
-
-execute 'start nginx' do
-  command 'nginx'
 end
