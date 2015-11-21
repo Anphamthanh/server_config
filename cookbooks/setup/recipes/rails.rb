@@ -19,6 +19,7 @@ end
   'libcurl4-openssl-dev'
   'python-software-properties'
   'libffi-dev'
+  'libgmp-dev'
 ).each do |pkg_to_install|
   package pkg_to_install
 end
