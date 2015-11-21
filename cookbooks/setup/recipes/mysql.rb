@@ -14,6 +14,6 @@ execute 'create database dir structure' do
   command 'sudo mysql_install_db'
 end
 
-execute 'remove dangerous default setting' do
-  command 'sudo mysql_secure_installation'
-end
+# execute 'remove dangerous default setting' do
+#   command 'sudo mysql_secure_installation'
+# end
