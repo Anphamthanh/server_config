@@ -4,6 +4,7 @@ git --work-tree=<%= @working_dir %> --git-dir=<%= @git_dir %> checkout -f
 GIT_DIR=<%= @git_dir %>
 WORK_TREE=<%= @working_dir %>
 
+export RAILS_ENV=production
 . ~/.bash_profile
 
 while read oldrev newrev ref
@@ -23,7 +24,7 @@ do
         rake db:create
         echo 'Migrate database...'
         rake db:migrate
-        echo 'Precompile assets...'
+        echo 'Precompiling assets...'
         rake assets:precompile
         nginx -s reload
         # end deploy tasks
