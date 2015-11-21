@@ -23,7 +23,8 @@ template "#{node['git-server']['source-dir']}bookstore.git/hooks/post-receive" d
   mode '0755'
   variables({
     working_dir: node['git-server']['server-dir'],
-    git_dir: "#{node['git-server']['source-dir']}bookstore.git"
+    git_dir: "#{node['git-server']['source-dir']}bookstore.git",
+    keys_file: node['secret_key_file_location']
   })
 end
 
