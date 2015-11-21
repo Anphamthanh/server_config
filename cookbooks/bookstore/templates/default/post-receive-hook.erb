@@ -27,6 +27,9 @@ do
         rake db:migrate
         echo 'Precompiling assets...'
         rake assets:precompile
+        echo 'Configure production log...'
+        touch log/prodution.log
+        chmod 0777 log/production.log
         nginx -s reload
         # end deploy tasks
         echo "Git hooks deploy complete"
