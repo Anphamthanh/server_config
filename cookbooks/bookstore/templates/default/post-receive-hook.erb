@@ -29,7 +29,7 @@ do
         rake assets:precompile
         echo 'Configure production log...'
         touch log/prodution.log
-        chmod 0777 log/production.log
+        chmod 0666 log/production.log
         nginx -s reload
         # end deploy tasks
         echo "Git hooks deploy complete"
