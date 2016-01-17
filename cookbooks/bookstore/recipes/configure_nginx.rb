@@ -15,7 +15,7 @@ template '/etc/nginx/sites-available/bookstore' do
   source 'bookstore'
   variables({
     ip: node['ipaddress'],
-    root_dir: "#{node['git-server']['server-dir']}public"
+    root_dir: "#{node['git-server']['server-dir']}/public"
   })
   not_if { ::File.exist? '/etc/nginx/sites-available/bookstore' }
 end

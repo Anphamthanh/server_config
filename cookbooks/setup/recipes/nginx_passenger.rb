@@ -5,14 +5,14 @@ script 'add passenger' do
   code <<-EOH
     apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 561F9B9CAC40B2F7
     echo 'deb https://oss-binaries.phusionpassenger.com/apt/passenger trusty main' >> /etc/apt/sources.list.d/passenger.list
-    chown root: /etc/apt/sources.list.d/passenger.list
-    chmod 600 /etc/apt/sources.list.d/passenger.list
+    chown deployer: /etc/apt/sources.list.d/passenger.list
+    chmod 644 /etc/apt/sources.list.d/passenger.list
   EOH
-  user 'root'
+  user 'deployer'
   not_if { `cat /etc/apt/sources.list.d/passenger.list | grep passenger | wc -l`.to_i > 0 }
 end
 
-execute 'apt-get-update' do
+execute 'update apt-cache' do
   command 'apt-get update'
   ignore_failure true
 end
