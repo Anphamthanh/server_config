@@ -1,6 +1,7 @@
 
 execute 'add Oracle Java 8 PPA' do
   command 'add-apt-repository ppa:openjdk-r/ppa'
+  not_if { ::File.exist? '/etc/apt/sources.list.d/openjdk-r-ppa-trusty.list' }
 end
 
 execute 'update apt cache' do
@@ -20,7 +21,7 @@ end
 
 execute 'install elastic search' do
   command 'dpkg -i /opt/elasticsearch-2.1.1.deb'
-  not_if { !::File.exist? '/opt/elasticsearch-2.1.1.deb' }
+  not_if { `ps aux | grep elastic | wc -l`.to_i > 1 }
 end
 
 execute 'clean up deb file' do
