@@ -11,9 +11,13 @@ execute 'disable password authentication' do
   command "sed -i s/'#PasswordAuthentication yes'/'PasswordAuthentication no'/g /etc/ssh/sshd_config"
 end
 
+execute 'disable root login' do
+  command "sed -i s/'#PermitRootLogin yes'/'PermitRootLogin no'/g /etc/ssh/sshd_config"
+end
+
 package 'unzip'
 
 execute 'configure ssh access' do
   command 'mv /root/.ssh/authorized_keys /deployer/.ssh/authorized_keys'
-  not_if { `cat /deployer/.ssh/authorized_keys | grep anp | wc -l`.to_i > 0 }
+  not_if { (::File.exist? '/deployer/.ssh/authorized_keys') && (`cat /deployer/.ssh/authorized_keys | grep anp | wc -l`.to_i > 0) }
 end

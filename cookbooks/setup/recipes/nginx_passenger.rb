@@ -8,8 +8,8 @@ script 'add passenger' do
     chown deployer: /etc/apt/sources.list.d/passenger.list
     chmod 644 /etc/apt/sources.list.d/passenger.list
   EOH
-  user 'deployer'
-  not_if { `cat /etc/apt/sources.list.d/passenger.list | grep passenger | wc -l`.to_i > 0 }
+  user 'root'
+  not_if { (::File.exist? '/etc/apt/sources.list.d/passenger.list') && (`cat /etc/apt/sources.list.d/passenger.list | grep passenger | wc -l`.to_i > 0) }
 end
 
 execute 'update apt-cache' do
