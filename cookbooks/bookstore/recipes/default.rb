@@ -17,7 +17,12 @@ end
 
 package 'unzip'
 
+directory '/home/deployer/.ssh' do
+  recursive true
+  user 'deployer'
+end
+
 execute 'configure ssh access' do
-  command 'mv /root/.ssh/authorized_keys /deployer/.ssh/authorized_keys'
-  not_if { (::File.exist? '/deployer/.ssh/authorized_keys') && (`cat /deployer/.ssh/authorized_keys | grep anp | wc -l`.to_i > 0) }
+  command 'cp /root/.ssh/authorized_keys /home/deployer/.ssh/authorized_keys; chown -R deployer /home/deployer/.ssh/authorized_keys'
+  not_if { (::File.exist? '/home/deployer/.ssh/authorized_keys') && (`cat /home/deployer/.ssh/authorized_keys | grep anp | wc -l`.to_i > 0) }
 end
