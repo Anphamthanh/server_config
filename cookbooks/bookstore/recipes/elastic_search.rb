@@ -20,9 +20,18 @@ end
 
 execute 'install elastic search' do
   command 'dpkg -i /opt/elasticsearch-2.1.1.deb'
+  not_if { !::File.exist? '/opt/elasticsearch-2.1.1.deb' }
 end
 
 execute 'clean up deb file' do
   command 'rm /opt/elasticsearch-2.1.1.deb'
   not_if { !::File.exist? '/opt/elasticsearch-2.1.1.deb' } 
+end
+
+execute 'start elasticsearch on start up' do
+  command 'update-rc.d elasticsearch defaults'
+end
+
+template '/etc/elasticsearch/elasticsearch.yml' do
+  source 'elasticsearch.yml'
 end
