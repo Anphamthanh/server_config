@@ -1,4 +1,10 @@
-
+%w(
+  'unzip'
+  'git'
+  'vim'
+).each do |pkg|
+  package pkg
+end
 
 package 'unzip'
 
