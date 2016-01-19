@@ -9,19 +9,17 @@ execute 'update apt cache' do
   ignore_failure true
 end
 
-execute 'install Java 8' do
-  command 'apt-get -y install openjdk-8-jdk'
-end
+package 'openjdk-8-jdk'
 
 remote_file '/opt/elasticsearch-2.1.1.deb' do
   source 'https://download.elasticsearch.org/elasticsearch/release/org/elasticsearch/distribution/deb/elasticsearch/2.1.1/elasticsearch-2.1.1.deb'
   user 'root'
-  not_if { ::File.exist? '/opt/elasticsearch-2.1.1.deb' }
+  not_if { `ps aux | grep /usr/share/elasticsearch/lib/elasticsearch-2.1.1.jar | wc -l`.to_i > 2 }
 end
 
 execute 'install elastic search' do
   command 'dpkg -i /opt/elasticsearch-2.1.1.deb'
-  not_if { `ps aux | grep elastic | wc -l`.to_i > 1 }
+  not_if { `ps aux | grep /usr/share/elasticsearch/lib/elasticsearch-2.1.1.jar | wc -l`.to_i > 2 }
 end
 
 execute 'clean up deb file' do
