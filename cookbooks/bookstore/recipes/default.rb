@@ -7,11 +7,7 @@
 end
 
 package 'unzip'
-
-user 'deployer' do
-  home '/home/deployer'
-  shell '/bin/bash'
-end
+# need a user deployer with sudo privilege
 
 include_recipe 'setup::rails'
 include_recipe 'setup::nginx_passenger'
