@@ -30,7 +30,7 @@ do
         echo 'Configure production log...'
         touch log/prodution.log
         chmod 0666 log/production.log
-        nginx -s reload
+        sudo nginx -s reload
         # end deploy tasks
         echo "Git hooks deploy complete"
     else

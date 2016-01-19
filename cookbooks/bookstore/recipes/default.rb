@@ -10,4 +10,7 @@ include_recipe 'bookstore::configure_ssh'
 
 package 'unzip'
 
-
+user 'deployer' do
+  home '/home/deployer'
+  shell '/bin/bash'
+end
