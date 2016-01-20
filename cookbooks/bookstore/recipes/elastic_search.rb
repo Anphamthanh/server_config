@@ -34,3 +34,7 @@ end
 template '/etc/elasticsearch/elasticsearch.yml' do
   source 'elasticsearch.yml'
 end
+
+service 'elasticsearch' do
+  action :start
+end
