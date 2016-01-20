@@ -2,7 +2,7 @@
 template '/etc/nginx/nginx.conf' do
   source 'nginx.conf.erb'
   variables({
-    ruby_path: `which ruby`
+    ruby_path: '/usr/local/bin/ruby'
   })
 end
 
