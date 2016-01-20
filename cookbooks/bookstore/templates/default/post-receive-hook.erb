@@ -28,7 +28,7 @@ do
         echo 'Precompiling assets...'
         rake assets:precompile
         echo 'Configure production log...'
-        touch log/prodution.log
+        touch log/production.log
         chmod 0666 log/production.log
         sudo nginx -s reload
         # end deploy tasks
