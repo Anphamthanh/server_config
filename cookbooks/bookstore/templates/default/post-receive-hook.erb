@@ -31,6 +31,8 @@ do
         touch log/production.log
         chmod 0666 log/production.log
         sudo nginx -s reload
+        echo 'Reindex elastic search...'
+        rake local:reindex
         # end deploy tasks
         echo "Git hooks deploy complete"
     else
