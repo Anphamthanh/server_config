@@ -1,4 +1,4 @@
-swap_size = node['memory']['total'][0..-3].to_i * 2 / 10**6
+swap_size = node.memory.total[0..-3].to_i * 2 / 10**6
 
 execute 'allocating swap file' do
   command "fallocate -l #{swap_size}G /swapfile"
