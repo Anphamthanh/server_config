@@ -31,7 +31,7 @@ execute 'start elasticsearch on start up' do
   command 'update-rc.d elasticsearch defaults 95 10'
 end
 
-directory '/elasticsearch/data' do
+directory node.elasticsearch.data_path do
   user 'elasticsearch'
   recursive true
 end
