@@ -13,7 +13,7 @@ include_recipe 'setup::nginx_passenger'
 include_recipe 'setup::mysql'
 
 include_recipe 'bookstore::configure_nginx'
-include_recipe 'bookstore::elastic_search'
+include_recipe 'bookstore::elasticsearch'
 include_recipe 'bookstore::configure_swap'
 include_recipe 'bookstore::bookstore_git'
 
