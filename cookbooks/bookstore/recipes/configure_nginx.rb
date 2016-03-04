@@ -33,7 +33,7 @@ execute 'reload nginx' do
   command 'nginx -s reload'
 end
 
-package 'ngxtop'
+package 'python-pip'
 
 execute 'install ngxtop' do
   command 'pip install ngxtop'
