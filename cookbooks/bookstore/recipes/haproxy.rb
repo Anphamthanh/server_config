@@ -28,6 +28,14 @@ template '/etc/haproxy/haproxy.cfg' do
   })
 end
 
+template '/etc/rsyslog.conf' do
+  source 'rsyslog.conf'
+end
+
+service 'rsyslog' do
+  action :restart
+end
+
 service 'haproxy' do
   action :restart
 end
