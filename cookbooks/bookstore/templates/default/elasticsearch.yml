@@ -93,4 +93,6 @@ network.host: localhost
 #
 # Require explicit names when deleting indices:
 #
-# action.destructive_requires_name: true
+action.destructive_requires_name: true
+action.disable_delete_all_indices: true
+indices.fielddata.cache.size: 25%
