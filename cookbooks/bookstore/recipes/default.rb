@@ -3,6 +3,8 @@
   'git'
   'vim'
   'htop'
+  'bc'
+  'python-pip'
 ).each do |pkg|
   package pkg
 end
