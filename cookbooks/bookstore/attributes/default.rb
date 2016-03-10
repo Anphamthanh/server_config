@@ -14,3 +14,5 @@ default['nginx']['server_name'] = 'ez-items.com www.ez-items.com backend.ez-item
 default['nginx']['ssl_certificate'] = '/etc/letsencrypt/live/ez-items.com/fullchain.pem'
 default['nginx']['ssl_certificate_key'] = '/etc/letsencrypt/live/ez-items.com/privkey.pem'
 
+default['sidekiq']['number_of_workers'] = 4
+default['sidekiq']['upstart_user'] = 'deployer'

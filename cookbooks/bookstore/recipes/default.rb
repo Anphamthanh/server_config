@@ -22,3 +22,4 @@ include_recipe 'bookstore::bookstore_git'
 # need a user deployer with sudo privilege to configure ssh. Make sure to create deployer user in cloudinit
 include_recipe 'bookstore::configure_ssh'
 include_recipe 'bookstore::redis'
+include_recipe 'bookstore::sidekiq'
