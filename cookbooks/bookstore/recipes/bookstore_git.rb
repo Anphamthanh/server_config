@@ -22,7 +22,7 @@ directory node['git-server']['server-dir'] do
 end
 
 template "#{node['git-server']['source-dir']}/bookstore.git/hooks/post-receive" do
-  source 'post-receive-hook.erb'
+  source 'hooks/post-receive-hook.erb'
   mode '0755'
   variables({
     working_dir: node['git-server']['server-dir'],

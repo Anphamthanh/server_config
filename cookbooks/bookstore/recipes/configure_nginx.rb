@@ -1,6 +1,6 @@
 # Configure passenger and ruby
 template '/etc/nginx/nginx.conf' do
-  source 'nginx.conf.erb'
+  source 'nginx/nginx.conf.erb'
   variables({
     ruby_path: '/usr/local/bin/ruby'
   })
@@ -8,12 +8,12 @@ end
 
 # Remove default Nginx
 template '/etc/nginx/sites-available/default' do
-  source 'nginx-default'
+  source 'nginx/nginx-default'
 end
 
 # Config for bookstore
 template '/etc/nginx/sites-available/bookstore' do
-  source 'bookstore'
+  source 'nginx/bookstore'
   variables({
     ip: node.ipaddress,
     root_dir: "#{node['git-server']['server-dir']}/public",

@@ -37,7 +37,7 @@ directory node.elasticsearch.data_path do
 end
 
 template '/etc/elasticsearch/elasticsearch.yml' do
-  source 'elasticsearch.yml'
+  source 'elasticsearch/elasticsearch.yml'
   user 'elasticsearch'
   variables({
     es_data_path: node.elasticsearch.data_path  
@@ -52,7 +52,7 @@ else
 end
 
 template '/etc/default/elasticsearch' do
-  source 'elasticsearch'
+  source 'elasticsearch/elasticsearch'
   user 'elasticsearch'
   variables({
     es_data_path: node.elasticsearch.data_path,

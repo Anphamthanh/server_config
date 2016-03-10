@@ -1,3 +1,6 @@
+### Unused Recipe ####
+
+
 %w(
   'unzip'
   'git'
@@ -22,14 +25,14 @@ end
 package 'haproxy'
 
 template '/etc/haproxy/haproxy.cfg' do
-  source 'haproxy.cfg'
+  source 'haproxy/haproxy.cfg'
   variables({
     backend_fqdn: node.haproxy.backend_fqdn
   })
 end
 
 template '/etc/rsyslog.conf' do
-  source 'rsyslog.conf'
+  source 'haproxy/rsyslog.conf'
 end
 
 service 'rsyslog' do
