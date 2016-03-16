@@ -19,3 +19,9 @@ include_recipe 'quanly_timxecu::quanly_git'
 
 # need a user deployer with sudo privilege to configure ssh. Make sure to create deployer user in cloudinit
 include_recipe 'quanly_timxecu::configure_ssh'
+
+user 'deployer' do
+  home '/home/deployer'
+  group 'sudo'
+  shell '/bin/bash'
+end

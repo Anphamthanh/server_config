@@ -1,0 +1,20 @@
+#cloud-config
+
+package_upgrade: true
+
+packages:
+  - git
+  - vim
+
+runcmd:
+  
+  # Installing Chef Client
+  - wget https://opscode-omnibus-packages.s3.amazonaws.com/ubuntu/10.04/x86_64/chef_12.5.1-1_amd64.deb
+  - dpkg -i chef_12.5.1-1_amd64.deb
+  - rm chef_12.5.1-1_amd64.deb
+  - cd
+  
+  # Retrieve setup cookbook
+  - git clone https://github.com/Anphamthanh/server_config
+  - cd server_config
+  - chef-client -z -o quanly_timxecu
