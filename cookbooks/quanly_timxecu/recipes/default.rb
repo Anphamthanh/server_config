@@ -9,7 +9,7 @@
   package pkg
 end
 
-
+include_recipe 'quanly_timxecu::user'
 include_recipe 'quanly_timxecu::rails'
 include_recipe 'quanly_timxecu::nginx_passenger'
 include_recipe 'quanly_timxecu::configure_nginx'
@@ -19,9 +19,3 @@ include_recipe 'quanly_timxecu::quanly_git'
 
 # need a user deployer with sudo privilege to configure ssh. Make sure to create deployer user in cloudinit
 include_recipe 'quanly_timxecu::configure_ssh'
-
-user 'deployer' do
-  home '/home/deployer'
-  group 'sudo'
-  shell '/bin/bash'
-end
