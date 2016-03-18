@@ -5,6 +5,12 @@ package_upgrade: true
 packages:
   - git
   - vim
+  
+users:
+  - name: deployer
+    groups: sudo
+    shell: /bin/bash
+    sudo: ['ALL=(ALL) NOPASSWD:ALL']
 
 runcmd:
   

@@ -9,7 +9,6 @@
   package pkg
 end
 
-include_recipe 'quanly_timxecu::user'
 include_recipe 'quanly_timxecu::rails'
 include_recipe 'quanly_timxecu::nginx_passenger'
 include_recipe 'quanly_timxecu::configure_nginx'
