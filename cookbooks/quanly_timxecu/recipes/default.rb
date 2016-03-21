@@ -5,6 +5,8 @@
   'htop'
   'bc'
   'python-pip'
+  'libmagickwand-dev'
+  'imagemagick'
 ).each do |pkg|
   package pkg
 end
