@@ -20,6 +20,7 @@ runcmd:
   - restart ssh
 
 users:
+      
   - name: deployer
     groups: sudo
     shell: /bin/bash
@@ -28,7 +29,6 @@ users:
       - ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCylogXfy6rtYGmhsdQhKQfmj/9MWKcFIwNL64CRF4pHei23oB2wmiMIjTV8Sy6L1eXOsIiIgwKWu/+PmkBsBXMLNwgZrnjCgnPLivLqxqHCDug8sxvTFmYeZyBPBkanJDigegXf03np2E9ZcdlZdC+PJkJbHCOj3Rbuyxsq8TTmLHZ6TUFpAiD6gfNe8BlxgHi4FLeC7BugNN+ynUPszn4afG8ugpwyGACHVBZVfF1t8FaF2H2Zlj7cymhPQmTwUECum44HhW+5kt2qIueF2jaISJJDHCXgWEuhP7GXG8wExz3LV0a4QNW2omCcDigBBwz0VWpNpRgSrKL8K0Nlc5n anpham@AnPham-WorkStation
 
   - name: git
-    groups: git
     shell: /usr/bin/git-shell
     ssh-authorized-keys:
       - ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCylogXfy6rtYGmhsdQhKQfmj/9MWKcFIwNL64CRF4pHei23oB2wmiMIjTV8Sy6L1eXOsIiIgwKWu/+PmkBsBXMLNwgZrnjCgnPLivLqxqHCDug8sxvTFmYeZyBPBkanJDigegXf03np2E9ZcdlZdC+PJkJbHCOj3Rbuyxsq8TTmLHZ6TUFpAiD6gfNe8BlxgHi4FLeC7BugNN+ynUPszn4afG8ugpwyGACHVBZVfF1t8FaF2H2Zlj7cymhPQmTwUECum44HhW+5kt2qIueF2jaISJJDHCXgWEuhP7GXG8wExz3LV0a4QNW2omCcDigBBwz0VWpNpRgSrKL8K0Nlc5n anpham@AnPham-WorkStation
